@@ -40,7 +40,7 @@
 
 
     function Game(el) {
-
+        this.$el = el;
     }
 
     Game.prototype = {
@@ -52,7 +52,7 @@
 
 
     document.addEventListener('DOMContentLoaded', function() {
-        
+        window.game = new Game(document.querySelector('.container'))
     })
 
 
