@@ -79,7 +79,10 @@
         this.$reset = this.$el.querySelector('.btn.reset')
         this.$playground = this.$el.querySelector('.playground')
         this.$winner = this.$el.querySelector('.winner')
-
+        this.$audio = this.$el.querySelector('audio')
+        this.$dogfall = this.$el.querySelector('.dogfall')
+        this.$Llogo = this.$el.querySelector('.L-logo')
+        this.$Rlogo = this.$el.querySelector('.R-logo')
 
         this.$start.addEventListener('click', this.onClickStart.bind(this))
         
@@ -109,6 +112,7 @@
             this.$overlay.hidden = true
             this.$start.hidden = true
             this.$reset.disabled = false
+            this.controlAuido('start')
             this.state = 'start'
         },
         reset: function() {
@@ -118,9 +122,13 @@
             this.resetSquares()
             this.$winner.hidden = true
             this.$winner.className = 'winner'
+            this.$dogfall.hidden = true
+            this.$Llogo.classList.remove(this.p1.name)
+            this.$Rlogo.classList.remove(this.p2.name)
             this.$overlay.hidden = false
             this.$start.hidden = false
             this.$reset.disabled = true
+            this.controlAuido('reset')
             this.state = 'init'
         },
         setDiceHidden: function(hidden) {
@@ -133,6 +141,7 @@
             }else if(e.target.matches('#dice-p2')) {
                 this.p2.reset(Player.random(this.p2.name))
             }
+             this.controlAuido('dice')
             //相同就禁用
             this.$start.disabled = (this.p1.name === this.p2.name) 
         },
@@ -152,14 +161,25 @@
                     return
             }
 
+
             this.squares[e.target.dataset.index].set(
                 this.activePlayer().name, this.p1.active ? 1 : -1
             )
 
+            if(this.isdogfalled()) {
+                 console.log('平局')
+                 this.showDogfalled(this.p1, this.p2)
+                 this.controlAuido('dogfall')
+                 return
+            } 
+
             var winner = this.getWinner()
             if(winner) {
                 this.showWinner(winner)
+                this.controlAuido('win')
                 return
+            } else {
+                this.controlAuido('click')
             }
             
             this.switchPlayer()
@@ -211,6 +231,19 @@
                 return s.val === 0
             })
         },
+        isdogfalled: function() {
+           return this.isEnded() && !this.getWinner()
+        },
+        showDogfalled: function(p1, p2) {
+            this.$overlay.classList.add('minimize')
+            this.$overlay.hidden = false
+            this.$dogfall.hidden = false
+            this.$Llogo.classList.add(p1.name)
+            this.$Rlogo.classList.add(p2.name)
+            setTimeout(function() {
+                this.$overlay.classList.remove('minimize')
+            }.bind(this), 500)
+        },
         isEnded: function() {
             return !!this.getWinner() || this.isAllSquaresUsed() 
         },
@@ -218,6 +251,11 @@
             this.squares.forEach(function(square) {
                 square.reset()
             })
+        },
+        controlAuido: function(which) {
+            this.$audio.src = window.location.origin + 
+                            '/music/' + which + '.wav'
+            this.$audio.play();
         }
        
     }

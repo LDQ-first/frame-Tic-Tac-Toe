@@ -37,16 +37,24 @@
                 <div class="square" data-index="8"></div>
             </div>   
             <div class="overlay">
-                <button class="btn start">Start</button>
+                <button class="btn start" >Start</button>
                 <div class="winner" hidden>
                     <img src="images/win.svg" alt="Winner" class="badge">
                     <div class="logo"></div>
+                </div>
+                <div class="dogfall" hidden>
+                    <img src="images/dogfall.svg" alt="Dogfall" class="badge">
+                    <div class="logo-wrapper">
+                        <div class="logo L-logo"></div>
+                        <div class="logo R-logo"></div>
+                    </div>
                 </div>
             </div>   
         </div>
         <div class="controls">
             <button class="btn reset">Reset</button>
         </div> 
+        <audio hidden></audio>
     </div>
     <script src="js/app.prototype.find.js"></script>
     <script src="js/app.js"></script>
