@@ -253,8 +253,11 @@
             })
         },
         controlAuido: function(which) {
-            this.$audio.src = window.location.origin + 
-                            '/music/' + which + '.wav'
+           /* this.$audio.src = window.location.origin + 
+                            '/music/' + which + '.wav'*/
+            this.$audio.src = 
+                 'http://ldqblog.me/frame-Tic-Tac-Toe/music/' 
+                 + which + '.wav'
             this.$audio.play();
         }
        
