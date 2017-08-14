@@ -9,6 +9,7 @@ html {
 
 body {
     height: 100vh;
+    min-width: 320px;
     background: linear-gradient(135deg, #00C4FF, #9D1BB2);
 }
 
@@ -25,7 +26,7 @@ button {
 }
 
 [hidden] {
-    display: none;
+    display: none !important;
 }
 
 .container {
@@ -134,7 +135,7 @@ button {
 }
 
 .square {
-    display: flex;
+    flex: 1;
     height: 9rem;
     cursor: pointer;
     background-size: 80%;
