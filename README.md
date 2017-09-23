@@ -3,7 +3,7 @@
 ## 简介
 > 使用ES5写的框架井字棋大战
 
-[预览地址](http://ldqblog.me/frame-Tic-Tac-Toe/)
+[预览地址](http://ldq-first.github.io/frame-Tic-Tac-Toe/)
 
 
 ## 效果图

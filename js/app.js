@@ -256,7 +256,7 @@
            /* this.$audio.src = window.location.origin + 
                             '/music/' + which + '.wav'*/
             this.$audio.src = 
-                 'http://ldqblog.me/frame-Tic-Tac-Toe/music/' 
+                 'http://ldq-first.github.io/frame-Tic-Tac-Toe/music/' 
                  + which + '.wav'
             this.$audio.play();
         }
